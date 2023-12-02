@@ -17,7 +17,7 @@ def login():
         entr1.delete(0, 'end')
         entr2.delete(0, 'end')
         root.withdraw()
-        os.system("python admin_page.py") # will go to a page lets named it admin_page
+        os.system("python admin_page.py") #It will go to a new page lets named it admin_page
         root.destroy()
         os._exit(0)
     else:
