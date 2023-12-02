@@ -3,8 +3,25 @@ import customtkinter
 from tkinter import messagebox
 import sqlite3
 
+# SQL Connection
+db=sqlite3.connect('supermarket.db')
+cursor = db.cursor()
 def login():
-    pass
+    username = entr1.get()
+    password = entr2.get()
+
+    # Check if the username and password match
+    cursor.execute("SELECT * FROM admin WHERE name = ? AND password = ?", (username, password))
+    if cursor.fetchone():
+        messagebox.showinfo("Login Success", "Login successful!")
+        entr1.delete(0, 'end')
+        entr2.delete(0, 'end')
+        root.withdraw()
+        os.system("python admin_page.py") # will go to a page lets named it admin_page
+        root.destroy()
+        os._exit(0)
+    else:
+        messagebox.showerror("Login Error", "Invalid username or password!")
 
 customtkinter.set_appearance_mode("light")
 customtkinter.set_default_color_theme("dark-blue")
